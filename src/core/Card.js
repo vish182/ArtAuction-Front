@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom';
 import React , {useEffect, useState} from 'react';
 import {ShowImage} from './showImage';
-import { createConvo } from '../chat/chatApi';
 import { useHistory } from "react-router-dom";
 import { deleteProduct } from '../admin/apiAdmin';
 import {isAuthenticated} from '../auth';
@@ -13,25 +12,25 @@ const Card = ({product}) => {
 
     let user = "";
 
-    const contactSeller = () => {
-        if(JSON.parse(localStorage.getItem('jwt'))){
-            user = JSON.parse(localStorage.getItem('jwt')).user;
-            console.log(user);
-        } else{
-            user = null;
-        }
-       console.log("user null? ",user == null, user);
-        if(user){
-            console.log("signed in: ", {sellerEmail: product.user, userEmail: user._id});
-            if(product.user === user._id) return;
-            createConvo({sellerEmail: product.user, userEmail: user._id})
-            .then((data)=>{
-                history.push(`/messages/${data.convId}`);
-            });
-        } else{
-           history.push('/');
-        }
-   }
+//     const contactSeller = () => {
+//         if(JSON.parse(localStorage.getItem('jwt'))){
+//             user = JSON.parse(localStorage.getItem('jwt')).user;
+//             console.log(user);
+//         } else{
+//             user = null;
+//         }
+//        console.log("user null? ",user == null, user);
+//         if(user){
+//             console.log("signed in: ", {sellerEmail: product.user, userEmail: user._id});
+//             if(product.user === user._id) return;
+//             createConvo({sellerEmail: product.user, userEmail: user._id})
+//             .then((data)=>{
+//                 history.push(`/messages/${data.convId}`);
+//             });
+//         } else{
+//            history.push('/');
+//         }
+//    }
 
 
     return(
@@ -51,7 +50,7 @@ const Card = ({product}) => {
                     <button className="mycard-btn btn-blue">View</button>
                 </Link>
                 {/* <Link className="mb-2" to={`/product/view/${product._id}`}> */}
-                    <button className="mycard-btn btn-red ml-2 mb-2" onClick={contactSeller}>Contact Seller</button>
+                    {/* <button className="mycard-btn btn-red ml-2 mb-2" onClick={contactSeller}>Contact Seller</button> */}
                 {/* </Link> */}
             </div>
         </div>

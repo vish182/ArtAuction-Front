@@ -9,7 +9,6 @@ import {readProduct, getBidList, createBid, sellBid} from './apiCore';
 import {ShowImage} from './showImage';
 import './Product.css';
 import {DetailsThumb} from '../components/Thumbs';
-import {createConvo} from '../chat/chatApi';
 import { useHistory } from "react-router-dom";
 
 export const ProductPage = (props) => {
@@ -94,10 +93,6 @@ export const ProductPage = (props) => {
                 loadBidList(props.match.params.productId);
             });
 
-            // createConvo({sellerEmail: product.user, userEmail: user._id})
-            // .then((data)=>{
-            //     history.push(`/messages/${data.convId}`);
-            // });
         } else{
            history.push('/');
         }
@@ -139,10 +134,6 @@ export const ProductPage = (props) => {
                 loadSingleProduct(productId);
             });
 
-            // createConvo({sellerEmail: product.user, userEmail: user._id})
-            // .then((data)=>{
-            //     history.push(`/messages/${data.convId}`);
-            // });
         } else{
            history.push('/signin');
         }

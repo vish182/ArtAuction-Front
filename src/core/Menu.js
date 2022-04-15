@@ -77,12 +77,12 @@ const Menu = ({history}) => {
                             </li>
                         </Link>
                         
-
+{/* 
                         <Link className="nav-link" style={isActive(history, "/admin/dashboard")} to="/messages/all">
                                 <li className="nav-item">    
                                     Messages
                                 </li>
-                        </Link>
+                        </Link> */}
 
                         <Link className="nav-link" style={isActive(history, "/create/product")} to="/create/product">
                                 <li className="nav-item">    
