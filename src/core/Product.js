@@ -174,13 +174,13 @@ export const ProductPage = (props) => {
                         }
                         
 
-                        <div class="card" style={{width: "18rem", marginTop: "10px"}}>
-                        <div class="card-header">
+                        <div className="card" style={{width: "18rem", marginTop: "10px"}}>
+                        <div className="card-header">
                             Bids
                         </div>
-                        <ul class="list-group list-group-flush">
+                        <ul className="list-group list-group-flush">
                             {bidList.map((mBid, i) => {
-                                return(<li class="list-group-item">{mBid.amount + " by " + mBid.buyer.name}</li>)
+                                return(<li className="list-group-item">{mBid.amount + " by " + mBid.buyer.name}</li>)
                             })}
                         </ul>
                         </div>

@@ -86,10 +86,12 @@ const Signin = () => {
 
     return(
         <Layout title="Sign in" description="Sign in page of the website" className="container col-md-8 offset-md-2">
+            <div style={{marginTop: "50px", marginBottom: "50vh"}}>
             {showError()}
             {showLoading()}
             {signUpForm()}
             {redirectUser()}
+            </div>
             {/* {JSON.stringify(values)} */}
         </Layout>
     );

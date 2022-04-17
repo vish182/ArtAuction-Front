@@ -155,7 +155,7 @@ const Shop = () => {
 
    return(
     <Layout title="Shop" description="Shopping" className="container-fluid">
-            <div className="shop-parent">
+            <div className="shop-parent" style={{marginTop: "50px", marginBottom: "50px"}}>
                 <div className="filter-box">
                     <h4>Filter by category</h4>
                     <ul>

@@ -58,7 +58,7 @@ const Dashboard = () => {
         <Layout title="Dashboard" description={`Hello ${name.split(' ')[0]}!`} className="container-fluid">
 
 
-            <div className="row">
+            <div className="row" style={{marginTop: "50px", marginBottom: "50px"}}>
                 <div className="col-3">
                     {userLinks()}
                 </div>

@@ -256,7 +256,7 @@ export const AddProduct = () => {
         <Layout title="Add Product" description="Add a new product for sale">
 
             <div className="row">
-                <div className="col-md-8 offset-md-2">
+                <div className="col-md-8 offset-md-2" style={{marginTop: "50px", marginBottom: "50px"}}>
                     {showLoading()}
                     {showError()}
                     {showSuccess()}

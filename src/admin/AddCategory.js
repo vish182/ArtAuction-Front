@@ -99,7 +99,7 @@ const AddCategory = () => {
     return(
         <Layout title="Create Category" description="Add a new category of items">
 
-            <div className="row">
+            <div className="row" style={{marginTop: "50px", marginBottom: "50px"}}>
                 <div className="col-md-8 offset-md-2">
                     {showError()}
                     {showSuccess()}
