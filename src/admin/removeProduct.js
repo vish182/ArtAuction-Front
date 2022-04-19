@@ -53,7 +53,7 @@ export const RemoveProduct = () => {
         return ( 
         <Layout title = "Remove Items" description = "Add a new product for sale" >
 
-            <div className = "row detail-parent p-5" > 
+            <div className = "flex-container wrap detail-parent p-5" > 
             
                 {products.map((product, i) => (
                     < DeleteCard key = {i} product = {product}/>

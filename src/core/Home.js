@@ -1,10 +1,10 @@
 import { API } from '../config';
 import React , {useEffect, useState} from 'react';
 import Layout from './Layout';
-import {getProducts} from './apiCore';
+import {getProducts, getProductsSoldRecently} from './apiCore';
 import { getCategories } from '../admin/apiAdmin';
-import Card from './Card';
-import {Search} from './Search';
+import Carousel from 'react-bootstrap/Carousel' 
+import 'bootstrap/dist/css/bootstrap.min.css'
 import "../style2.css"
 
 
@@ -13,11 +13,13 @@ const Home = () => {
     const [productBySell, setProductBySell] = useState([]);
     const [productByArrival, setProductByArrival] = useState([]);
     const [error, setError] = useState(false);
+    const [recentlySold, setRecentlySold] = useState([]);
     const [categories,setCategories] = useState([]);
 
     useEffect(() =>{
         loadProductByArrival();
         loadCategories();
+        loadRecentlySold();
         //loadProductBySell();
     }, []);
 
@@ -44,6 +46,17 @@ const Home = () => {
         })
     };
 
+    const loadRecentlySold = () => {
+        getProductsSoldRecently('createdAt', 5)
+        .then((data) => {
+            if(data.error){
+                setError(data.error);
+            } else{
+                setRecentlySold(data);
+            }
+        })
+    }
+
     const loadProductByArrival = () => {
         getProducts('createdAt', 10)
         .then((data) => {
@@ -57,44 +70,24 @@ const Home = () => {
 
     const carousel = () => {
         return(
-            <div id="carousel" className="carousel slide" data-ride="carousel">
-            <ol className="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0"></li>
-                <li data-target="#carousel" data-slide-to="1" className="active"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-            </ol>
-            <div className="carousel-inner">
-                <div className="carousel-item">
-                    <img className="d-block carousel-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1200px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" alt="First slide"/>
-                    <div className="carousel-caption d-none d-md-block">
-                        <h5>Mona Lisa</h5>
-                        <p> <em> Leonardo da Vinci, 1513-1517 </em> </p>
-                    </div>
-                </div>
-                <div className="carousel-item active">
-                    <img className="d-block carousel-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/1200px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg" alt="Second slide"/>
-                    <div className="carousel-caption d-none d-md-block">
-                        <h5>The Scream</h5>
-                        <p> <em> Edvard Munch, 1893 </em></p>
-                    </div>
-                </div>
-                <div className="carousel-item">
-                    <img className="d-block carousel-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg" alt="Third slide"/>
-                    <div className="carousel-caption d-none d-md-block">
-                        <h5>Girl with a Pearl Earring</h5>
-                        <p> <em> Johannes Vermeer, 1665</em> </p>
-                    </div>
-                </div>
-            </div>
-            <a className="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="sr-only">Previous</span>
-            </a>
-            <a className="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="sr-only">Next</span>
-            </a>
-        </div>
+
+            <div className='container-fluid' >  
+                <Carousel>
+
+                    {productByArrival.map((prod, i) =>(
+                        <Carousel.Item style={{'height':"300px"}} >  
+                        <div className="d-flex flex-row justify-content-center">
+                            <img style={{height: "300px"}}  
+                            className="d-block"  
+                            src={`${API}/product/photo1/${prod._id}`}  />
+                        </div>  
+                            <Carousel.Caption>  
+                                <h3 style={{color: "#DCDCDC"}}>{prod.name} </h3>  
+                            </Carousel.Caption>  
+                        </Carousel.Item  > 
+                    ))} 
+                </Carousel>  
+            </div>   
         );
     }
 
@@ -121,7 +114,7 @@ const Home = () => {
         <div style={{position:"relative"}}>
             <div className="light-bg">
                 <div className="container-80">
-                    <h3 style={{textAlign: "left"}}> Best we have to offer </h3> <br/>
+                    <h3 style={{textAlign: "left"}}> New Arrivals </h3> <br/>
                     <p>Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
                     
                     {carousel()}
@@ -139,9 +132,9 @@ const Home = () => {
         <div style={{position:"relative"}}>
             <div className="dark-bg">
                 <div className="container-80">
-                    <h3 style={{color: "#ddd", textAlign:"left"}}> Top Buys </h3> <br/>
+                    <h3 style={{color: "#ddd", textAlign:"left"}}> Recently Sold </h3> <br/>
                     <div className="row">
-                        {productByArrival.map((prod, i) =>(                        <div class="col-md-3">
+                        {recentlySold.map((prod, i) =>(                        <div class="col-md-3">
                             <div class="card o-container rounded-0" style={{width: "18rem"}}>
                                 <img className="card-img-top o-img" src={`${API}/product/photo1/${prod._id}`} alt=" Liberty Leading the People - Eugène Delacroix, 1830 "/>
                                 <div className="card-body o-middle width-100">
@@ -168,10 +161,10 @@ const Home = () => {
                         {/* <div className="col-md-6 d-flex flex-column justify-content-center category-column">  */}
                         {categories.map((cat, i) =>(
                             <>
-                            <div className="card category-card border-0 rounded-0" style={{width: "18rem"}}>
+                            <div className="card category-card border-0 rounded-0 mr-2 dark" style={{width: "18rem", 'background-color': "#282E34"}}>
                                 <div className="card-body dark">
                                     <h5 className="card-title">{cat.name}</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <p className="card-text">{cat.description}</p>
                                 </div>
                             </div>
                             </>

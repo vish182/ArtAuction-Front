@@ -48,9 +48,11 @@ const Menu = ({history}) => {
                                 Shop
                                 </li>
                             </Link>
-                              <a href="#">View Collection</a>
-                              <a href="#">E-Wallet</a>
-                              <a href="#">Contact</a>
+                            <Link className="nav-link" to="/user/dashboard">
+                                <li className="nav-item">
+                                E-Wallet
+                                </li>
+                            </Link>
                             </div>
                           </div>
 

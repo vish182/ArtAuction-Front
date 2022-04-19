@@ -20,6 +20,23 @@ export const getProducts = (sortBy, limit) => {
         })
 };
 
+export const getProductsSoldRecently = (sortBy, limit) => {
+    //console.log(user.name, user.email, user.password, user.phone);
+
+
+    return fetch(`${API}/products?sortBy=${sortBy}&order=desc&limit=${limit}&soldStatus=true`, {
+            method: 'GET',
+        })
+        .then(response => {
+            //console.log(JSON.stringify(response.json()));
+            return response.json();
+        })
+        .catch((err) => {
+            console.log(err);
+
+        })
+};
+
 export const getProductsByUser = ({userId}) => {
     //console.log(user.name, user.email, user.password, user.phone);
 

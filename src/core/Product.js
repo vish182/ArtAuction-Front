@@ -157,7 +157,7 @@ export const ProductPage = (props) => {
                             <span>₹{product.price}</span>
                         </div> 
                         <hr/> 
-
+                        {product && product.soldStatus && <h2 style={{color: "red"}}>SOLD</h2>}
                         {product && product.soldStatus === false &&
                         <div>
                             {user && product && product.user != user._id && 
@@ -180,7 +180,7 @@ export const ProductPage = (props) => {
                         </div>
                         <ul className="list-group list-group-flush">
                             {bidList.map((mBid, i) => {
-                                return(<li className="list-group-item">{mBid.amount + " by " + mBid.buyer.name}</li>)
+                                return(<li className="list-group-item" style={{fontWeight: (800 - 100*i)}}>{mBid.amount + " by " + mBid.buyer.name}</li>)
                             })}
                         </ul>
                         </div>

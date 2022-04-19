@@ -89,12 +89,12 @@ export const DeleteCard = ({product}) => {
                 <p><p>₹{product.price}</p></p>
                 {/* {showProductQuantity()} */}
             </div>
-            <div className="row">
-                 <Link className="ml-4 mb-2 " to={`/product/view/${product._id}`}>
+            <div className="d-flex justify-content-cente flex-row">
+                 <Link className="ml-3 mb-2 " to={`/product/view/${product._id}`}>
                     <button className="mycard-btn btn-blue">View</button>
                 </Link>
                 {/* <Link className="mb-2" to={`/product/view/${product._id}`}> */}
-                    <button className="mycard-btn btn-red ml-2 mb-2" onClick={deleteItem}>Delete Item</button>
+                    <button className="mycard-btn btn-red ml-4 mb-2" style={{width: "35%"}} onClick={deleteItem}>Delete Item</button>
                 {/* </Link> */}
             </div>
         </div>
