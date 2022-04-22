@@ -96,26 +96,31 @@ const Home = () => {
         <Layout title="Home" description="Home page of the website" className="container-fluid">
          <div className="bgimg-1">
             <div className="caption">
-            <span className="border dark-img-text"> SOME TEXT </span>
+            <span className="border dark-img-text"> WELCOME TO PICTURA! </span>
             </div>
         </div>
         
         <div className="light-bg">
             <h3>About Us</h3>
-            <p>Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim. Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
+            <p className="d-flex flex-row justify-content-center mt-3">
+            Distributing high art to noteworthy collectors since 2022.
+            </p>
+            <p className="d-flex flex-row justify-content-center">
+                
+                We are an auction house dedicated to restoring, preserving and sharing art in all shapes and forms with people who appreciate its value.
+            </p>
         </div>
  
         <div className="bgimg-2">
             <div className="caption">
-            <span className="border light-img-text" > SOME TEXT </span>
+            {/*<span className="border light-img-text" > SOME TEXT </span>*/}
             </div>
         </div>
 
         <div style={{position:"relative"}}>
             <div className="light-bg">
                 <div className="container-80">
-                    <h3 style={{textAlign: "left"}}> New Arrivals </h3> <br/>
-                    <p>Accumsan fringilla vulputate at quibusdam sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
+                    <h3 style={{textAlign: "center"}}> New Arrivals </h3> <br/>
                     
                     {carousel()}
 
@@ -125,7 +130,7 @@ const Home = () => {
  
         <div className="bgimg-3">
             <div className="caption">
-            <span className="border light-img-text"> SOME TEXT </span>
+            {/* <span className="border light-img-text"> SOME TEXT </span> */}
             </div>
         </div>
 
@@ -149,7 +154,7 @@ const Home = () => {
        
         <div className="bgimg-4">
             <div className="caption">
-            <span className="border dark-img-text"> SOME TEXT </span>
+            <span className="border dark-img-text"> All artworks are authenticated by our team, kindly do not re-sell sold artworks. </span>
             </div>
         </div>
 
@@ -178,7 +183,7 @@ const Home = () => {
        
         <div className="bgimg-5">
             <div className="caption">
-            <span className="border dark-img-text"> SOME TEXT </span>
+            <span className="border dark-img-text"> You can reach out with further queries <a href="mailto:abc@gmail.com">here</a> .</span>
             </div>
         </div>
         </Layout>

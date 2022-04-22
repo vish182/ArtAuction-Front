@@ -261,7 +261,7 @@ export const AddProduct = () => {
                     {showError()}
                     {showSuccess()}
                     {newPostForm()}
-                    {JSON.stringify(formData)}
+                    
                 </div>
             </div>
         </Layout>
