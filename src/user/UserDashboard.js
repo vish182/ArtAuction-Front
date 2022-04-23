@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../core/Layout';
 import {isAuthenticated} from '../auth';
 import {Link} from 'react-router-dom';
+import { addCoins } from '../core/apiCore';
 
 
 const Dashboard = () => {
 
     const{user: {_id, name, email, role, wallet}} = isAuthenticated();
+
+    const [money, setMoney] = useState(wallet);
 
     const userLinks = () => {
         return(
@@ -38,7 +41,33 @@ const Dashboard = () => {
                     <li className="list-group-item">Name: {" "+name}</li>
                     <li className="list-group-item">Email: {" "+email}</li>
                     <li className="list-group-item">Type: {role === 1 ? "Admin":"User"}</li>
-                    <li className="list-group-item">Wallet: {wallet}</li>
+                    <li className="list-group-item">Wallet: {money}</li>
+                    <li className="list-group-item"><button className="btn btn-primary" onClick={() =>{
+                        addCoins(_id, 1000)
+                        .then((data) =>{
+                            if(data.error){
+                                console.log("error: ",data.error);
+                            } else{
+
+                                let userStorage;
+
+                                if(typeof window == 'undefined'){
+                                    return false;
+                                }
+                                if(localStorage.getItem('jwt')){
+                                    userStorage = JSON.parse(localStorage.getItem('jwt'));
+                                    userStorage.user.wallet = data.wallet;
+                                    console.log(userStorage);
+                                    localStorage.setItem("jwt", JSON.stringify(userStorage));
+                                } else{
+                                    return false;
+                                }
+
+                                setMoney(data.wallet);
+                                console.log("UPDATED USER: ", data);
+                            }
+                        });
+                    }}>Add 1000 coins</button></li>
                 </ul>
             </div>
         );

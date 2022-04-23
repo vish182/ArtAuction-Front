@@ -85,6 +85,11 @@ export const ProductPage = (props) => {
             };
             console.log("signed in: ", {sellerEmail: product.user, userEmail: user._id});
 
+            if(bid > user.wallet){
+                alert("You dont have enough money in your wallet!");
+                return;
+            }
+
             createBid(productId, user._id, product.user, bid)
             .then((data) => {
                 console.log(data);

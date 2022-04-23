@@ -223,3 +223,30 @@ export const sellBid = (productId, buyerId, sellerId, amount) => {
 
         })
 };
+
+export const addCoins = (userId, amount) => {
+    //console.log(user.name, user.email, user.password, user.phone);
+
+    const data = {
+        "user_Id": userId,
+        "amount": amount
+    };
+    //console.log("data: ", data)
+    console.log("sell bid: ", JSON.stringify(data))
+    return fetch(`${API}/bids/addMoney`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            //console.log(JSON.stringify(response.json()));
+            return response.json();
+        })
+        .catch((err) => {
+            console.log(err);
+
+        })
+};
