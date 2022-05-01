@@ -86,10 +86,12 @@ const Signup = () => {
 
     return(
         <Layout title="Sign up" description="Sign up page of the website" className="container col-md-8 offset-md-2">
+            <div style={{marginTop: "50px", marginBottom: "50vh"}}>
             {showError()}
             {showSuccess()}
             {signUpForm()}
             {/* {JSON.stringify(values)} */}
+            </div>
         </Layout>
     );
 };

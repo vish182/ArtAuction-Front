@@ -86,6 +86,7 @@ export const AddProduct = () => {
         details,
         loading,
         error,
+        photo1,
         createdProduct,
         redirectToProfile,
         formData
@@ -95,6 +96,17 @@ export const AddProduct = () => {
 
     const clickSubmit = (event) => {
         event.preventDefault();
+
+        if(!photo1){
+            setValues({...values, error: "Please Select an image for the product"});
+            return;
+        }
+
+        if(parseInt(price) == NaN){
+            setValues({...values, error: "Please Enter a number for price"});
+            return;
+        }
+
         setValues({...values, loading: true, error: ''});
         formData.set('user', user._id);
         formData.set('owner', user._id);
@@ -239,7 +251,7 @@ export const AddProduct = () => {
 
     const showError = () => {
         if(error){
-            return <h5 className="text-danger">Product {name} could not be created</h5>
+            return <h5 className="text-danger">Product {name} could not be created : {error}</h5>
         }
     };
 
@@ -256,7 +268,7 @@ export const AddProduct = () => {
         <Layout title="Add Product" description="Add a new product for sale">
 
             <div className="row">
-                <div className="col-md-8 offset-md-2" style={{marginTop: "50px", marginBottom: "50px"}}>
+                <div className="col-md-8 offset-md-2" style={{marginTop: "50px", height: "72vh"}}>
                     {showLoading()}
                     {showError()}
                     {showSuccess()}

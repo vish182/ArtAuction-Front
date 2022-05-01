@@ -58,6 +58,7 @@ export const RemoveProduct = () => {
                 {products.map((product, i) => (
                     < DeleteCard key = {i} product = {product}/>
                 ))}
+                {products.length < 1 && <h1>You don't own Any items</h1>}
             </div >
 
         </Layout>

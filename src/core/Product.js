@@ -1,15 +1,12 @@
-import { API } from '../config';
 import React , {useEffect, useState} from 'react';
-import {Route, Redirect} from 'react-router-dom';
+import alertify from 'alertifyjs';
+import 'alertifyjs/build/css/alertify.css';
 import Layout from './Layout';
-import {getProducts} from './apiCore';
-import Card from './Card';
-import {Search} from './Search';
 import {readProduct, getBidList, createBid, sellBid} from './apiCore';
 import {ShowImage} from './showImage';
 import './Product.css';
-import {DetailsThumb} from '../components/Thumbs';
 import { useHistory } from "react-router-dom";
+
 
 export const ProductPage = (props) => {
 
@@ -80,13 +77,17 @@ export const ProductPage = (props) => {
        console.log("user null? ",user == null, user);
         if(user){
             if(product.user === user._id){
-                alert("Cannot bid on your own item!")
+                alertify.alert("Cannot bid on your own item!", () =>{
+                    alertify.message("Ok");
+                });
                 return;
             };
             console.log("signed in: ", {sellerEmail: product.user, userEmail: user._id});
 
             if(bid > user.wallet){
-                alert("You dont have enough money in your wallet!");
+                alertify.alert("You dont have enough money in your wallet!", () =>{
+                    alertify.message("Ok");
+                });
                 return;
             }
 
@@ -108,7 +109,9 @@ export const ProductPage = (props) => {
         if(bidList.length > 0){
             highestBid = bidList[0];
         } else {
-            alert("No bids yet");
+            alertify.alert("No bids yet", () =>{
+                alertify.message("Ok");
+            });
             return;
         }
 
@@ -122,7 +125,9 @@ export const ProductPage = (props) => {
        console.log("user null? ",user == null, user);
         if(user){
             if(product.user !== user._id){
-                alert("Cannot cannot sell other user's item!")
+                alertify.alert("Cannot cannot sell other user's item!", () =>{
+                    alertify.message("Ok");
+                });
                 return;
             };
             console.log("signed in: ", {sellerEmail: product.user, userEmail: user._id});

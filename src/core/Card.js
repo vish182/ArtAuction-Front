@@ -72,7 +72,7 @@ export const DeleteCard = ({product}) => {
         // user = JSON.parse(localStorage.getItem('jwt')).user;
         deleteProduct({productId: product._id, userId: user._id, token: token})
         .then((data)=>{
-            history.push(`/user/dashboard`);
+            history.push(`/remove/dashboard`);
         });
     };
 
