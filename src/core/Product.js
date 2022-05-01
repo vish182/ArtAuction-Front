@@ -192,6 +192,7 @@ export const ProductPage = (props) => {
                             {bidList.map((mBid, i) => {
                                 return(<li className="list-group-item" style={{fontWeight: (800 - 100*i)}}>{mBid.amount + " by " + mBid.buyer.name}</li>)
                             })}
+                            {bidList.length  < 1 && <li className="list-group-item">No bids yet</li>}
                         </ul>
                         </div>
                         <hr/>
